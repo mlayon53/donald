@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Images</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <h1>Random Images</h1>
+  <button id="generateBtn">Generate Random HTTP Cat</button>
+  <div id="imageContainer" style="margin-top: 20px;">
+    <img id="catImage" src="" alt="HTTP Cat" style="max-width: 100%; display: none;" />
+  </div>
+
+  <script>
+    const statusCodes = [
+      100, 101, 200, 201, 202, 204, 301, 302, 303, 400, 401, 403, 404, 405,
+      408, 418, 500, 502, 503, 504
+    ]; // List of HTTP status codes available at http.cat
+
+    document.getElementById('generateBtn').addEventListener('click', function() {
+      const randomCode = statusCodes[Math.floor(Math.random() * statusCodes.length)];
+      const catImage = document.getElementById('catImage');
+
+      // Fix the URL by enclosing it in quotes
+      catImage.src = `https://http.cat/${randomCode}`; // Correct template string syntax
+      catImage.style.display = 'block';
+    });
+  </script>
+  <script src="sw.js"></script>
+</body>
+</html>
